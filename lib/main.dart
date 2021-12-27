@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(CookBookApp());
@@ -9,6 +10,10 @@ class CookBookApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return GetMaterialApp(
+      title: 'CookBook App',
+      debugShowCheckedModeBanner: false,
+      defaultTransition: Transition.rightToLeft,
+    );
   }
 }
