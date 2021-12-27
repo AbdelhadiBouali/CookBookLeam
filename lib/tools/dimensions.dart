@@ -1,4 +1,4 @@
 class Dimens {
-  static double Width = 0;
-  static double Height = 0;
+  static double width = 0;
+  static double height = 0;
 }

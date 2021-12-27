@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({Key key}) : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -16,19 +16,22 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Dimens.Height = MediaQuery.of(context)
+    Dimens.height = MediaQuery.of(context)
         .size
         .height; // To initialize the Height and Width of diffrent screens (Responsivity)
-    Dimens.Width = MediaQuery.of(context).size.width; //
-    return Scaffold(
-        backgroundColor: Colors.white,
-        body: Center(
-            child: Container(
-                height: MediaQuery.of(context).size.height * .5,
-                width: MediaQuery.of(context).size.width * .5,
-                child: Text(
-                  "App Logo",
-                  style: Theme.of(context).textTheme.headline1,
-                ))));
+    Dimens.width = MediaQuery.of(context).size.width; //
+    return SafeArea(
+      child: Scaffold(
+          backgroundColor: Colors.black,
+          body: Center(
+              child: Container(
+                  height: MediaQuery.of(context).size.height * .5,
+                  // width: MediaQuery.of(context).size.width * .5,
+                  // LOGO HERE
+                  child: Text(
+                    "App Logo",
+                    style: Theme.of(context).textTheme.headline1,
+                  )))),
+    );
   }
 }
