@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:cookbook/services/userState.dart';
+import 'package:cookbook/views/home/homepage.dart';
 import 'package:cookbook/views/sharedWidgets/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,6 +21,8 @@ Future<void> loginApi(String email, String password) async {
     UserState.user.completeName = loginResponse.data.fullName;
     UserState.userIsLogged = true;
     await saveUser();
+    Get.offAll(HomePage(),
+        transition: Transition.rightToLeft, duration: Duration(seconds: 5));
   } else {
     // Showing a simple snackbar to the user
     customSnackbar(

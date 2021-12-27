@@ -29,6 +29,8 @@ Future<void> signupApi(
   Get.back();
 
   if (signupResponse.isSuccess) {
+    Get.back();
+    customSnackbar("Signed up successfully", "Sign in please", 7);
   } else {
     // Showing a simple snackbar to the user
     customSnackbar(signupResponse.error.info.cause.toString(),
