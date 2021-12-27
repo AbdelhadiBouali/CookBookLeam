@@ -5,10 +5,8 @@ class UserState {
   static User user = User(
     completeName: "",
     email: "",
-    gender: "",
     id: "",
     password: "",
-    phoneNumber: "",
     profileImage: "",
   );
   static bool userIsLogged = false;
@@ -21,8 +19,6 @@ Future saveUser() async {
   await prefs.setString("id", UserState.user.id);
   await prefs.setString("completeName", UserState.user.completeName);
   await prefs.setString("password", UserState.user.password);
-  await prefs.setString("phoneNumber", UserState.user.phoneNumber);
-  await prefs.setString("gender", UserState.user.gender);
   await prefs.setBool("userIsLogged", UserState.userIsLogged);
   await prefs.setBool("profileAvailable", UserState.profileAvailable);
 
@@ -32,14 +28,11 @@ Future saveUser() async {
 
 Future getUser() async {
   final prefs = await SharedPreferences.getInstance();
-  UserState.user.id = await prefs.getString("id") ?? "-1";
-  UserState.user.completeName = await prefs.getString("completeName") ?? "none";
-  UserState.user.password = await prefs.getString("password") ?? "none";
-  UserState.user.phoneNumber = await prefs.getString("phoneNumber") ?? "none";
-  UserState.user.gender = await prefs.getString("gender") ?? "none";
-  UserState.user.profileImage = await prefs.getString("profileImage") ?? "none";
-  UserState.userIsLogged = await prefs.getBool("userIsLogged") ?? false;
-  UserState.profileAvailable = await prefs.getBool("profileAvailable") ?? false;
+  UserState.user.id = prefs.getString("id") ?? "-1";
+  UserState.user.completeName = prefs.getString("completeName") ?? "none";
+  UserState.user.profileImage = prefs.getString("profileImage") ?? "none";
+  UserState.userIsLogged = prefs.getBool("userIsLogged") ?? false;
+  UserState.profileAvailable = prefs.getBool("profileAvailable") ?? false;
 
   UserState.token = await prefs.getString("token") ?? "";
 }
@@ -53,10 +46,8 @@ Future deleteUser() async {
   UserState.user = User(
     completeName: "",
     email: "",
-    gender: "",
     id: "",
     password: "",
-    phoneNumber: "",
     profileImage: "",
   );
   await prefs.setBool("userIsOnline", UserState.userIsLogged);

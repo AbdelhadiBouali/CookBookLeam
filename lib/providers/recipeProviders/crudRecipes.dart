@@ -1,9 +1,9 @@
 import 'dart:developer';
 
-import 'package:cookbook/models/recipe.dart';
+import 'package:cookbook/models/recipe.model.dart';
 import 'package:renovation_core/core.dart';
 
-//// METHOD TO GET ALL RECIPES
+//////////////////////////////////////////////////////////////////////////////// METHOD TO GET ALL RECIPES
 
 Future<List<Recipe>> getRecipes() async {
   // need to specify Recipes model attributes
@@ -22,9 +22,27 @@ Future<List<Recipe>> getRecipes() async {
   return recipes;
 }
 
-// Create a recipe
+//////////////////////////////////////////////////////////////////// Create a recipe
 
 Future<void> createRecipe(Recipe personalRecipe) async {
+  // need to specify Recipes model attributes
+
+  RequestResponse<Recipe> response =
+      await getFrappeModelController().saveDoc<Recipe>(personalRecipe);
+
+  if (response.isSuccess) {
+    // If the document was successfully retrieved
+
+    print(response.data);
+  } else {
+    // If the document was not retrieved
+    print(response.error);
+  }
+}
+
+//////////////////////////////////////////////////////////////////// Update a recipe
+
+Future<void> updateRecipe(Recipe personalRecipe) async {
   // need to specify Recipes model attributes
 
   RequestResponse<Recipe> response =
