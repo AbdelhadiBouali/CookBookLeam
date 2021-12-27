@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginScreen extends StatelessWidget {
-  final formkey = GlobalKey<FormState>();
   final LoginController loginController = Get.put(LoginController());
+  final formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {

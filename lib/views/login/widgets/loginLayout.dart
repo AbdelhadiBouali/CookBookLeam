@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:cookbook/controllers/loginController.dart';
+import 'package:cookbook/providers/authProviders/loginProvider.dart';
 import 'package:cookbook/tools/colors.dart';
 import 'package:cookbook/tools/dimensions.dart';
 import 'package:cookbook/views/sharedWidgets/spacers.dart';
@@ -6,6 +9,8 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:renovation_core/auth.dart';
+import 'package:renovation_core/core.dart';
 
 final LoginController loginController = Get.put(LoginController());
 
@@ -33,7 +38,7 @@ Widget loginLayout(GlobalKey<FormState> formKey) {
             color: Color(0xff000000),
           ),
         ),
-        SizedBox(height: Dimens.height * .023),
+        columnSpace(),
         new Text(
           "Sign in to discover a whole new world of cooking",
           textAlign: TextAlign.center,
@@ -44,19 +49,22 @@ Widget loginLayout(GlobalKey<FormState> formKey) {
           ),
         ),
         columnSpace(),
-        // emailInput(),
         columnSpace(),
-        //passwordInput(),
+        emailInput(), // Email textfield
+        columnSpace(),
+        passwordInput(),
         columnSpace(),
         InkWell(
-            onTap: () {
-              //         Get.offAll(HomePage());
+            onTap: () async {
               if (formKey.currentState.validate()) {
-                //   loginApi(); // Login Function
+                loginApi(
+                    loginController.loginEmailTextController.text,
+                    loginController.loginPasswordTextController
+                        .text); // Login Function with inputs
               }
             },
             child:
-                nextButton(CookColors.white, "Sign in", CookColors.mainColor)),
+                nextButton(CookColors.mainColor, "Sign in", CookColors.white)),
         columnSpace(),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -148,6 +156,81 @@ Widget emailInput() {
             borderRadius: BorderRadius.circular(29.00),
             borderSide: BorderSide(
               color: CookColors.mainColor,
+              width: 1.0,
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(29),
+            borderSide: BorderSide(color: Colors.transparent, width: 0.0),
+          ),
+          border: InputBorder.none,
+          errorStyle: TextStyle(height: 0),
+        ),
+      ),
+    ),
+  );
+}
+
+Widget passwordInput() {
+  return new Container(
+    //Password
+    height: Dimens.height * .068,
+    width: Dimens.width * .84,
+    decoration: BoxDecoration(
+      color: Color(0xffffffff),
+      border: Border.all(
+        width: 1.00,
+        color: Colors.transparent,
+      ),
+      boxShadow: [
+        BoxShadow(
+          offset: Offset(0.00, 3.00),
+          color: Color(0xff000000).withOpacity(0.05),
+          blurRadius: 6,
+        ),
+      ],
+      borderRadius: BorderRadius.circular(29.00),
+    ),
+    child: Center(
+      child: TextFormField(
+        controller: loginController.loginPasswordTextController,
+        obscureText: true,
+        keyboardType: TextInputType.text,
+        style: TextStyle(
+          fontFamily: "Montserrat",
+          fontSize: 13,
+          color: Colors.black,
+        ),
+        onTap: () {
+          loginController.emailCheck(false);
+          loginController.passCheck(true);
+        },
+        validator: (password) {
+          if (password.length < 6) {
+            return 'Veuillez entrez un mot de passe correcte';
+          } else {
+            return null;
+          }
+        },
+        decoration: InputDecoration(
+          prefixIcon: Icon(
+            Icons.lock,
+            color: loginController.passCheck.value == true
+                ? CookColors.mainColor
+                : Color(0xff707070).withOpacity(0.5),
+          ),
+          hintText: "Password",
+          hintStyle: TextStyle(
+            fontFamily: "Montserrat",
+            fontSize: 13,
+            color: loginController.passCheck.value == true
+                ? CookColors.mainColor
+                : Color(0xffcfcfcf),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(29.00),
+            borderSide: BorderSide(
+              color: Color(0xffeb786b),
               width: 1.0,
             ),
           ),
