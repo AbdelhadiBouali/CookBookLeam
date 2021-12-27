@@ -26,6 +26,9 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Container(
                 height: MediaQuery.of(context).size.height * .5,
                 width: MediaQuery.of(context).size.width * .5,
-                child: Text("App Logo"))));
+                child: Text(
+                  "App Logo",
+                  style: Theme.of(context).textTheme.headline1,
+                ))));
   }
 }
