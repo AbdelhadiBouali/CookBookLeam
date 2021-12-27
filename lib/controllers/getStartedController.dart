@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:cookbook/tools/urls.dart';
+import 'package:cookbook/services/urls.dart';
 import 'package:cookbook/views/getStarted/getStartedScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -52,8 +52,6 @@ class GetStartedController extends GetxController {
 
   @override
   void onInit() async {
-    final renovationInstance = Renovation(); // To initialize Renovation
-    await renovationInstance.init(urlBase, useJWT: true);
     pageDirection();
     slideController();
     super.onInit();

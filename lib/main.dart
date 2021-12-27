@@ -1,8 +1,21 @@
+import 'package:cookbook/services/urls.dart';
+import 'package:cookbook/services/userState.dart';
 import 'package:cookbook/views/getStarted/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:renovation_core/core.dart';
 
-void main() {
+import 'models/user.dart';
+
+Renovation renovationInstance = Renovation(); // To initialize Renovation
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  //Getting the user
+  UserState.user = User();
+  await getUser();
+  await renovationInstance.init(urlBase, useJWT: true);
+
   runApp(CookBookApp());
 }
 

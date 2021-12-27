@@ -2,6 +2,9 @@ import 'dart:developer';
 
 import 'package:cookbook/controllers/loginController.dart';
 import 'package:cookbook/providers/authProviders/loginProvider.dart';
+import 'package:cookbook/providers/authProviders/signupProvider.dart';
+import 'package:cookbook/providers/recipeProviders/crudFavorite.dart';
+import 'package:cookbook/providers/recipeProviders/crudRecipes.dart';
 import 'package:cookbook/tools/colors.dart';
 import 'package:cookbook/tools/dimensions.dart';
 import 'package:cookbook/views/sharedWidgets/spacers.dart';
@@ -56,12 +59,11 @@ Widget loginLayout(GlobalKey<FormState> formKey) {
         columnSpace(),
         InkWell(
             onTap: () async {
-              if (formKey.currentState.validate()) {
-                loginApi(
-                    loginController.loginEmailTextController.text,
-                    loginController.loginPasswordTextController
-                        .text); // Login Function with inputs
-              }
+              signupApi("Abdelhadi", "Bouali", "ha_bouali@esi.dz", "abdelhadi");
+              /*if (formKey.currentState.validate()) {
+                loginApi(loginController.loginEmailTextController.text,
+                    loginController.loginPasswordTextController.text);
+              } // Login Function with inputs*/
             },
             child:
                 nextButton(CookColors.mainColor, "Sign in", CookColors.white)),
@@ -129,7 +131,7 @@ Widget emailInput() {
         },
         validator: (value) => EmailValidator.validate(value)
             ? null
-            : "Veuillez introduire une adresse email correcte",
+            : "Please type a correct email",
         keyboardType: TextInputType.emailAddress,
         cursorColor: Color(0xff006e77),
         style: TextStyle(
@@ -207,7 +209,7 @@ Widget passwordInput() {
         },
         validator: (password) {
           if (password.length < 6) {
-            return 'Veuillez entrez un mot de passe correcte';
+            return 'Please type a correct password';
           } else {
             return null;
           }

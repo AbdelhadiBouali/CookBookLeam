@@ -28,7 +28,8 @@ dependencies:
   flutter_svg: ^0.19.3
   flutter_hooks: ^0.15.0
   email_validator: ^1.0.6
-
+  shared_preferences: ^0.5.12+4
+  http: ^0.12.2
 
 
   # The following adds the Cupertino Icons font to your application.
