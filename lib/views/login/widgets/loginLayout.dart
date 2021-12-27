@@ -59,7 +59,8 @@ Widget loginLayout(GlobalKey<FormState> formKey) {
         columnSpace(),
         InkWell(
             onTap: () async {
-              signupApi("Abdelhadi", "Bouali", "ha_bouali@esi.dz", "abdelhadi");
+              getRecipes();
+              //signupApi("Abdelhadi", "Bouali", "ha_bouali@esi.dz", "abdelhadi");
               /*if (formKey.currentState.validate()) {
                 loginApi(loginController.loginEmailTextController.text,
                     loginController.loginPasswordTextController.text);

@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renovation_core/core.dart';
 
+// Get all favorites recipes
+
 Future<void> getFavorites() async {
   RequestResponse<FrappeResponse> response = await renovationInstance.call({
     "cmd": "cookbook_backend.api.favorites.get_favorite_recipes",
@@ -14,6 +16,7 @@ Future<void> getFavorites() async {
   log(response.httpCode.toString());
 }
 
+// Delete a favorite recipe
 Future<void> deleteFavorite(dynamic item) async {
   Get.dialog(Center(child: CircularProgressIndicator()));
 

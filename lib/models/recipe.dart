@@ -4,31 +4,30 @@
 
 import 'dart:convert';
 
+import 'package:renovation_core/model.dart';
+
 List<Recipe> recipeJson(String str) =>
     List<Recipe>.from(json.decode(str).map((x) => Recipe.fromJson(x)));
 
 String recipeToJson(List<Recipe> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Recipe {
+// Attributes not specified
+class Recipe extends FrappeDocument {
   Recipe({
     this.title,
     this.message,
     this.id,
-    this.idDeliveryMan,
-    this.idTrip,
     this.type,
     this.idTarget,
     this.createdAt,
     this.updatedAt,
     this.v,
-  });
+  }) : super('Recipe');
 
   String title;
   String message;
   String id;
-  String idDeliveryMan;
-  String idTrip;
   String type;
   String idTarget;
   DateTime createdAt;
@@ -39,8 +38,6 @@ class Recipe {
         title: json["title"],
         message: json["message"],
         id: json["_id"],
-        idDeliveryMan: json["id_delivery_man"],
-        idTrip: json["id_trip"],
         type: json["type"],
         idTarget: json["id_target"],
         createdAt: DateTime.parse(json["createdAt"]),
@@ -52,12 +49,16 @@ class Recipe {
         "title": title,
         "message": message,
         "_id": id,
-        "id_delivery_man": idDeliveryMan,
-        "id_trip": idTrip,
         "type": type,
         "id_target": idTarget,
         "createdAt": createdAt.toIso8601String(),
         "updatedAt": updatedAt.toIso8601String(),
         "__v": v,
       };
+
+  @override
+  T fromJson<T>(Map<String, dynamic> json) {
+    // TODO: implement fromJson
+    throw UnimplementedError();
+  }
 }
