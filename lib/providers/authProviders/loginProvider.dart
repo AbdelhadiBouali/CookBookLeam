@@ -15,6 +15,6 @@ Future<void> loginApi(String email, String password) async {
     log(loginResponse.data.fullName);
   } else {
     customSnackbar(
-        loginResponse.error.title, loginResponse.error.description, 5);
+        loginResponse.error.title, loginResponse.error.info.suggestion, 5);
   }
 }
