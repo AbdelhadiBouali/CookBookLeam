@@ -17,7 +17,7 @@ class CookBookApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // Define the default brightness and colors.
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
         primaryColor: Colors.black,
         // Define the default font family.
         fontFamily: 'Montserrat',
@@ -25,9 +25,14 @@ class CookBookApp extends StatelessWidget {
         // text styling for headlines, titles, bodies of text, and more.
         textTheme: const TextTheme(
           headline1: TextStyle(
-              fontSize: 35.0, fontFamily: 'Montserrat', color: Colors.white),
+              fontSize: 35.0,
+              fontFamily: 'Montserrat',
+              color: Colors.white,
+              fontWeight: FontWeight.bold),
           headline2: TextStyle(
               fontSize: 18.0, fontFamily: 'Montserrat', color: Colors.white),
+          headline3: TextStyle(
+              fontSize: 18.0, fontFamily: 'Montserrat', color: Colors.black),
           bodyText2: TextStyle(
               fontSize: 14.0, fontFamily: 'Montserrat', color: Colors.white),
         ),

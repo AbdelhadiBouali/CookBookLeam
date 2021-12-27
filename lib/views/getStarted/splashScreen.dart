@@ -3,16 +3,8 @@ import 'package:cookbook/tools/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({Key key}) : super(key: key);
-
-  @override
-  _SplashScreenState createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  final GetStartedController getStartedController =
-      Get.put(GetStartedController());
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +12,13 @@ class _SplashScreenState extends State<SplashScreen> {
         .size
         .height; // To initialize the Height and Width of diffrent screens (Responsivity)
     Dimens.width = MediaQuery.of(context).size.width; //
+
+    final GetStartedController getStartedController =
+        Get.put(GetStartedController());
+
     return SafeArea(
       child: Scaffold(
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.white,
           body: Center(
               child: Container(
                   height: MediaQuery.of(context).size.height * .5,
@@ -30,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   // LOGO HERE
                   child: Text(
                     "App Logo",
-                    style: Theme.of(context).textTheme.headline1,
+                    style: Theme.of(context).textTheme.headline3,
                   )))),
     );
   }

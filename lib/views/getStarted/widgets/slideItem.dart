@@ -15,7 +15,7 @@ class SlideItem extends StatelessWidget {
       child: Align(
           alignment: Alignment.topCenter,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               // To show title

@@ -27,7 +27,7 @@ dependencies:
   renovation_core: ^1.0.2
   flutter_svg: ^0.19.3
   flutter_hooks: ^0.15.0
-
+  email_validator: ^1.0.6
 
 
 
@@ -55,6 +55,7 @@ flutter:
      - assets/images/getstarted1.svg
      - assets/images/getstarted2.svg
      - assets/images/getstarted3.svg
+     - assets/images/login.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
