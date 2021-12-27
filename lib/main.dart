@@ -1,3 +1,4 @@
+import 'package:cookbook/views/getStarted/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,8 +12,10 @@ class CookBookApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      // Using Getx for State Management, animations and routes
       title: 'CookBook App',
       debugShowCheckedModeBanner: false,
+      home: SplashScreen(),
       defaultTransition: Transition.rightToLeft,
     );
   }
