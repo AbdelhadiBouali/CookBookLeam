@@ -15,7 +15,7 @@ class SplashScreen extends StatelessWidget {
 
     final GetStartedController getStartedController =
         Get.put(GetStartedController());
-
+    getStartedController.onInit();
     return SafeArea(
       child: Scaffold(
           backgroundColor: Colors.white,
