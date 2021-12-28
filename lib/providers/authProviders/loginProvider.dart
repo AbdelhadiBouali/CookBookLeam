@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:renovation_core/auth.dart';
 import 'package:renovation_core/core.dart';
 
+// Function to validate login and take the user to homepage
+
 Future<void> loginApi(String email, String password) async {
   Get.dialog(Center(child: CircularProgressIndicator()));
 

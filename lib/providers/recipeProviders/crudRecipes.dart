@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cookbook/models/recipe.model.dart';
 import 'package:cookbook/views/sharedWidgets/snackbar.dart';
 import 'package:flutter/material.dart';

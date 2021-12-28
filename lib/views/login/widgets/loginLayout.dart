@@ -9,8 +9,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:renovation_core/auth.dart';
-import 'package:renovation_core/core.dart';
 
 final LoginController loginController = Get.put(LoginController());
 
@@ -59,8 +57,7 @@ Widget loginLayout(GlobalKey<FormState> formKey) {
               Get.to(HomePage(),
                   transition: Transition.rightToLeft,
                   duration: Duration(seconds: 5));
-              //signupApi("Abdelhadi", "Bouali", "ha_bouali@esi.dz", "abdelhadi");
-              /*if (formKey.currentState.validate()) {
+              /*if (formKey.currentState.validate()) {                    // Verify the format of the inputs
                 loginApi(loginController.loginEmailTextController.text,
                     loginController.loginPasswordTextController.text);
               } // Login Function with inputs*/

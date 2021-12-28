@@ -34,7 +34,7 @@ Future getUser() async {
   UserState.userIsLogged = prefs.getBool("userIsLogged") ?? false;
   UserState.profileAvailable = prefs.getBool("profileAvailable") ?? false;
 
-  UserState.token = await prefs.getString("token") ?? "";
+  UserState.token = prefs.getString("token") ?? "";
 }
 
 Future deleteUser() async {

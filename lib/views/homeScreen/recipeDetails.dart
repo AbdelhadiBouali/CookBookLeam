@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cookbook/models/recipe.model.dart';
 import 'package:cookbook/tools/dimensions.dart';
 import 'package:flutter/cupertino.dart';

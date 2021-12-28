@@ -22,12 +22,8 @@ class SplashScreen extends StatelessWidget {
           body: Center(
               child: Container(
                   height: MediaQuery.of(context).size.height * .5,
-                  // width: MediaQuery.of(context).size.width * .5,
-                  // LOGO HERE
-                  child: Text(
-                    "App Logo",
-                    style: Theme.of(context).textTheme.headline3,
-                  )))),
+                  width: MediaQuery.of(context).size.width * .5,
+                  child: Image.asset("assets/images/logo.png")))),
     );
   }
 }

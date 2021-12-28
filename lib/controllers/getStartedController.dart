@@ -39,6 +39,7 @@ class GetStartedController extends GetxController {
       try {
         final result = await InternetAddress.lookup('google.com');
         if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+          // We should verify the User State (Logged in or not), and take the user to welcome screen or homepage
           Get.offAll(GetStartedScreen(),
               transition: Transition.fade, duration: Duration(seconds: 1));
         }

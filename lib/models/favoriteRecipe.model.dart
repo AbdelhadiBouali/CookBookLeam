@@ -36,7 +36,6 @@ class FavoriteRecipe extends FrappeDocument {
 
   @override
   T fromJson<T>(Map<String, dynamic> json) {
-    // TODO: implement fromJson
     throw UnimplementedError();
   }
 }
