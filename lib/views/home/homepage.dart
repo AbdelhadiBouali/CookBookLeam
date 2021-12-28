@@ -2,6 +2,7 @@ import 'package:cookbook/controllers/homeController.dart';
 import 'package:cookbook/tools/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
@@ -22,7 +23,7 @@ class HomePage extends StatelessWidget {
             type: BottomNavigationBarType.shifting,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon: Icon(Icons.home_rounded),
+                icon: Icon(FlutterIcons.home_ant),
                 title: Text('',
                     style: TextStyle(
                       fontFamily: "Montserrat",
@@ -31,7 +32,7 @@ class HomePage extends StatelessWidget {
                     )),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.transform_sharp),
+                icon: Icon(FlutterIcons.knife_mco),
                 title: Text('',
                     style: TextStyle(
                       fontFamily: "Montserrat",
@@ -40,7 +41,9 @@ class HomePage extends StatelessWidget {
                     )),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.notifications),
+                icon: Icon(
+                  FlutterIcons.heart_circle_outline_mco,
+                ),
                 title: Text('',
                     style: TextStyle(
                       fontFamily: "Montserrat",
@@ -49,7 +52,7 @@ class HomePage extends StatelessWidget {
                     )),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.perm_identity),
+                icon: Icon(FlutterIcons.person_mdi),
                 title: Text('',
                     style: TextStyle(
                       fontFamily: "Montserrat",
