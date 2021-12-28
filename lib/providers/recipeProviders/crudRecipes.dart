@@ -28,7 +28,7 @@ Future<void> createRecipe(Recipe personalRecipe) async {
   if (response.isSuccess) {
     // If the document was successfully created
 
-    customSnackbar(response.data.title, response.data.message, 5);
+    customSnackbar(response.data.title, response.data.writer, 5);
   } else {
     // If the document was not created => show error snackbar
     customSnackbar(
@@ -47,7 +47,7 @@ Future<void> updateRecipe(Recipe personalRecipe) async {
   if (response.isSuccess) {
     // If the document was successfully updated => Show success snackbar
 
-    customSnackbar(response.data.title, response.data.message, 5);
+    customSnackbar(response.data.title, response.data.writer, 5);
   } else {
     // If the document was not updated => show error snackbar
     customSnackbar(

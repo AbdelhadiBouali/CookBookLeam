@@ -4,6 +4,7 @@
 
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:renovation_core/model.dart';
 
 List<Recipe> recipeJson(String str) =>
@@ -14,46 +15,42 @@ String recipeToJson(List<Recipe> data) =>
 
 // Attributes not specified
 class Recipe extends FrappeDocument {
-  Recipe({
-    this.title,
-    this.message,
-    this.id,
-    this.type,
-    this.idTarget,
-    this.createdAt,
-    this.updatedAt,
-    this.v,
-  }) : super('Recipe');
+  Recipe(
+      {this.title,
+      this.writer,
+      this.description,
+      this.cookingTime,
+      this.servings,
+      this.imgPath,
+      this.ingredients,
+      this.id})
+      : super('Recipe');
 
-  String title;
-  String message;
-  String id;
-  String type;
-  String idTarget;
-  DateTime createdAt;
-  DateTime updatedAt;
-  int v;
+  String title, writer, description, id;
+  int cookingTime;
+  int servings;
+  List<String> ingredients = [];
+  String imgPath;
 
   factory Recipe.fromJson(Map<String, dynamic> json) => Recipe(
-        title: json["title"],
-        message: json["message"],
-        id: json["_id"],
-        type: json["type"],
-        idTarget: json["id_target"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
-        v: json["__v"],
-      );
+      title: json["title"],
+      writer: json["writer"],
+      description: json["description"],
+      id: json["_id"],
+      cookingTime: json["cookingTime"],
+      servings: json["servings"],
+      imgPath: json["imgPath"],
+      ingredients: json["ingredients"]);
 
   Map<String, dynamic> toJson() => {
         "title": title,
-        "message": message,
+        "writer": writer,
+        "description": description,
         "_id": id,
-        "type": type,
-        "id_target": idTarget,
-        "createdAt": createdAt.toIso8601String(),
-        "updatedAt": updatedAt.toIso8601String(),
-        "__v": v,
+        "cookingTime": cookingTime,
+        "servings": servings,
+        "imgPath": imgPath,
+        "ingredients": ingredients
       };
 
   @override

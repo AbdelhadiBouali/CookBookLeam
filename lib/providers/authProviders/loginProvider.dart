@@ -20,9 +20,10 @@ Future<void> loginApi(String email, String password) async {
     UserState.token = loginResponse.data.token;
     UserState.user.completeName = loginResponse.data.fullName;
     UserState.userIsLogged = true;
-    await saveUser();
+    await saveUser(); //save user data in local
     Get.offAll(HomePage(),
-        transition: Transition.rightToLeft, duration: Duration(seconds: 5));
+        transition: Transition.rightToLeft,
+        duration: Duration(seconds: 5)); // take user to homepage if sucess
   } else {
     // Showing a simple snackbar to the user
     customSnackbar(

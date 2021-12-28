@@ -18,7 +18,7 @@ class HomePageController extends GetxController {
         DateTime.now().difference(popTime) >
             Duration(seconds: 2)) /*showing 'press 2 times to quit*/ {
       selectedIndex(0);
-      Get.snackbar("Tip:", "Cliquez deux fois pour quitter l'application",
+      Get.snackbar("Tip:", "Tap two times to quit the app",
           snackPosition: SnackPosition.BOTTOM);
       popTime = DateTime.now();
       return Future.value(false);

@@ -22,8 +22,8 @@ class HomePage extends StatelessWidget {
             type: BottomNavigationBarType.shifting,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                title: Text('Accueil',
+                icon: Icon(Icons.home_rounded),
+                title: Text('',
                     style: TextStyle(
                       fontFamily: "Montserrat",
                       fontSize: 12,
@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.transform_sharp),
-                title: Text('Transaction',
+                title: Text('',
                     style: TextStyle(
                       fontFamily: "Montserrat",
                       fontSize: 12,
@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.notifications),
-                title: Text('Notification',
+                title: Text('',
                     style: TextStyle(
                       fontFamily: "Montserrat",
                       fontSize: 12,
@@ -50,7 +50,7 @@ class HomePage extends StatelessWidget {
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.perm_identity),
-                title: Text('Profil',
+                title: Text('',
                     style: TextStyle(
                       fontFamily: "Montserrat",
                       fontSize: 12,

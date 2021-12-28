@@ -7,6 +7,7 @@ import 'package:cookbook/providers/recipeProviders/crudFavorite.dart';
 import 'package:cookbook/providers/recipeProviders/crudRecipes.dart';
 import 'package:cookbook/tools/colors.dart';
 import 'package:cookbook/tools/dimensions.dart';
+import 'package:cookbook/views/home/homepage.dart';
 import 'package:cookbook/views/sharedWidgets/spacers.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
@@ -25,12 +26,13 @@ Widget loginLayout(GlobalKey<FormState> formKey) {
       children: [
         Padding(
           padding: EdgeInsets.only(
-            top: Dimens.height * .14,
+            top: Dimens.height * .12,
           ),
           child: SvgPicture.asset(
             "assets/images/login.svg",
           ),
         ),
+        SizedBox(height: Dimens.height * .1),
         new Text(
           "Welcome !",
           textAlign: TextAlign.center,
@@ -51,15 +53,16 @@ Widget loginLayout(GlobalKey<FormState> formKey) {
             color: Color(0xff707070),
           ),
         ),
-        columnSpace(),
-        columnSpace(),
+        SizedBox(height: Dimens.height * .04),
         emailInput(), // Email textfield
         columnSpace(),
         passwordInput(),
-        columnSpace(),
+        SizedBox(height: Dimens.height * .06),
         InkWell(
             onTap: () async {
-              getRecipes();
+              Get.to(HomePage(),
+                  transition: Transition.rightToLeft,
+                  duration: Duration(seconds: 5));
               //signupApi("Abdelhadi", "Bouali", "ha_bouali@esi.dz", "abdelhadi");
               /*if (formKey.currentState.validate()) {
                 loginApi(loginController.loginEmailTextController.text,
