@@ -24,15 +24,15 @@ Future<List<FavoriteRecipe>> getFavorites() async {
   return favoriteRecipes;
 }
 
-// Delete a favorite recipe
-Future<void> deleteFavorite(FavoriteRecipe item) async {
+////////////////////////////////////////// Delete a favorite recipe
+Future<void> deleteFavorite(FavoriteRecipe favoriteRecipe) async {
   Get.dialog(Center(child: CircularProgressIndicator()));
 
-  RequestResponse<String> response =
-      await getFrappeModelController().deleteDoc('Favorite Item', item.id);
+  RequestResponse<String> response = await getFrappeModelController()
+      .deleteDoc('Favorite Recipe', favoriteRecipe.id);
   Get.back();
   if (response.isSuccess) {
-    customSnackbar("Favorite Item deleted", "", 5);
+    customSnackbar("Favorite Recipe deleted", "", 5);
   } else {
     customSnackbar(
         response.error.info.cause, response.error.info.suggestion, 5);
