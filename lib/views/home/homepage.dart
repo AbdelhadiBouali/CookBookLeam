@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 icon: Icon(FlutterIcons.home_ant),
-                title: Text('',
+                title: Text('Recipes',
                     style: TextStyle(
                       fontFamily: "Montserrat",
                       fontSize: 12,
@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
               ),
               BottomNavigationBarItem(
                 icon: Icon(FlutterIcons.knife_mco),
-                title: Text('',
+                title: Text('My recipes',
                     style: TextStyle(
                       fontFamily: "Montserrat",
                       fontSize: 12,
@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
                 icon: Icon(
                   FlutterIcons.heart_circle_outline_mco,
                 ),
-                title: Text('',
+                title: Text('Favorites',
                     style: TextStyle(
                       fontFamily: "Montserrat",
                       fontSize: 12,
@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
               ),
               BottomNavigationBarItem(
                 icon: Icon(FlutterIcons.person_mdi),
-                title: Text('',
+                title: Text('Profile',
                     style: TextStyle(
                       fontFamily: "Montserrat",
                       fontSize: 12,

@@ -1,6 +1,6 @@
 import 'package:cookbook/tools/dimensions.dart';
 import 'package:cookbook/views/getStarted/widgets/slideModel.dart';
-import 'package:cookbook/views/sharedWidgets/spacers.dart';
+import 'package:cookbook/views/sharedWidgets/items.tools.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

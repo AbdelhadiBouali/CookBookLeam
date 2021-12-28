@@ -30,3 +30,12 @@ Widget nextButton(Color color, String text, Color textColor) {
     ),
   );
 }
+
+Widget title(String title, BuildContext context) {
+  return Text(title,
+      style: TextStyle(
+          fontSize: 30.0,
+          fontFamily: 'Montserrat',
+          color: Colors.black,
+          fontWeight: FontWeight.bold));
+}

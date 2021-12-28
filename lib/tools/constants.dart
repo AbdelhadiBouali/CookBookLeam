@@ -1,12 +1,13 @@
 // List of Screens
 import 'package:cookbook/models/recipe.model.dart';
 import 'package:cookbook/views/homeScreen/homeScreen.dart';
+import 'package:cookbook/views/myRecipes/myRecipesScreen.dart';
 import 'package:flutter/material.dart';
 
 final List<Widget> screensChoice = <Widget>[
   HomeScreen(),
-  /* TransactionScreen(),
-  NotificationScreen(),
+  MyRecipesScreen(),
+  /*NotificationScreen(),
   ProfileScreen()*/
 ];
 
