@@ -10,6 +10,7 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 
 class RecipeDetails extends HookWidget {
+  // Using hook to control state of the widgets
   final Recipe recipeModel;
   RecipeDetails({
     @required this.recipeModel,
@@ -17,7 +18,7 @@ class RecipeDetails extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    log(recipeModel.ingredients.toString());
+    final likeItem = useState<bool>(false);
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       body: SlidingUpPanel(
@@ -102,6 +103,11 @@ class RecipeDetails extends HookWidget {
                   ),
                   Text(
                     recipeModel.servings.toString() + ' Servings',
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                        fontFamily: "Montserrat"),
                   ),
                 ],
               ),
@@ -194,10 +200,17 @@ class RecipeDetails extends HookWidget {
               Positioned(
                 top: 40,
                 right: 20,
-                child: Icon(
-                  FlutterIcons.bookmark_outline_mco,
-                  color: Colors.white,
-                  size: 38,
+                child: InkWell(
+                  onTap: () {
+                    likeItem.value = !likeItem.value;
+                  },
+                  child: Icon(
+                    likeItem.value == true
+                        ? FlutterIcons.bookmark_check_mco
+                        : FlutterIcons.bookmark_outline_mco,
+                    color: Colors.white,
+                    size: 38,
+                  ),
                 ),
               ),
               Positioned(
