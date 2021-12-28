@@ -1,12 +1,15 @@
+import 'dart:developer';
+
 import 'package:cookbook/models/recipe.model.dart';
 import 'package:cookbook/tools/dimensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 
-class RecipeDetails extends StatelessWidget {
+class RecipeDetails extends HookWidget {
   final Recipe recipeModel;
   RecipeDetails({
     @required this.recipeModel,
@@ -14,13 +17,14 @@ class RecipeDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log(recipeModel.ingredients.toString());
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       body: SlidingUpPanel(
         parallaxEnabled: true,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(24),
-          topRight: Radius.circular(24),
+          topLeft: Radius.circular(40),
+          topRight: Radius.circular(40),
         ),
         padding: EdgeInsets.symmetric(
           horizontal: 12,
@@ -47,14 +51,14 @@ class RecipeDetails extends StatelessWidget {
               ),
               Text(
                 recipeModel.title,
-                style: textTheme.headline1,
+                style: textTheme.headline3,
               ),
               SizedBox(
                 height: 10,
               ),
               Text(
                 recipeModel.writer,
-                style: textTheme.headline2,
+                style: textTheme.headline3,
               ),
               SizedBox(
                 height: 10,
@@ -70,7 +74,7 @@ class RecipeDetails extends StatelessWidget {
                   ),
                   Text(
                     "198",
-                    // style: _textTheme.caption,
+                    style: textTheme.headline3,
                   ),
                   SizedBox(
                     width: 10,
@@ -83,6 +87,7 @@ class RecipeDetails extends StatelessWidget {
                   ),
                   Text(
                     recipeModel.cookingTime.toString() + '\'',
+                    style: textTheme.headline3,
                   ),
                   SizedBox(
                     width: 20,
@@ -135,9 +140,9 @@ class RecipeDetails extends StatelessWidget {
                         ),
                         unselectedLabelColor: Colors.black.withOpacity(0.3),
                         labelStyle: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                        ),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: "Montserrat"),
                         labelPadding: EdgeInsets.symmetric(
                           horizontal: 32,
                         ),
@@ -150,10 +155,12 @@ class RecipeDetails extends StatelessWidget {
                           children: [
                             Ingredients(recipeModel: recipeModel),
                             Container(
-                              child: Text("Preparation Tab"),
+                              child: Text(
+                                "Preparation Tab",
+                              ), // Just to test
                             ),
                             Container(
-                              child: Text("Reviews Tab"),
+                              child: Text("Reviews Tab"), // Just to test
                             ),
                           ],
                         ),
@@ -238,7 +245,14 @@ class Ingredients extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                     vertical: 2.0,
                   ),
-                  child: Text('⚫️ ' + recipeModel.ingredients[index]),
+                  child: Text(
+                    '⚫️ ' + recipeModel.ingredients[index],
+                    style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                        fontFamily: "Montserrat"),
+                  ),
                 );
               },
               separatorBuilder: (BuildContext context, int index) {

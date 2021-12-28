@@ -10,7 +10,7 @@ final List<Widget> screensChoice = <Widget>[
   ProfileScreen()*/
 ];
 
-final List<Recipe> demoRecipe = [
+final List<Recipe> demoRecipes = [
   Recipe(
     title: 'Gruyère, Bacon, and Spinach Scrambled Eggs',
     writer: "Imran Sefat",
