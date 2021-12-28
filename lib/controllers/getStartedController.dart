@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:cookbook/services/urls.dart';
 import 'package:cookbook/views/getStarted/getStartedScreen.dart';
+import 'package:cookbook/views/getStarted/noConnectionScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renovation_core/core.dart';
@@ -45,7 +46,7 @@ class GetStartedController extends GetxController {
               transition: Transition.fade, duration: Duration(seconds: 1));
         }
       } on SocketException catch (_) {
-        //  Get.offAll(NoConnectionScreen());
+        Get.offAll(NoConnectionScreen());
       }
     });
   }

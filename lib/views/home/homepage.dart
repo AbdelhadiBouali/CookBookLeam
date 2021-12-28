@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
                     )),
               ),
               BottomNavigationBarItem(
-                icon: Icon(FlutterIcons.knife_mco),
+                icon: Icon(Icons.food_bank_outlined),
                 title: Text('My recipes',
                     style: TextStyle(
                       fontFamily: "Montserrat",

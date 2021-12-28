@@ -1,3 +1,4 @@
+import 'package:cookbook/tools/colors.dart';
 import 'package:cookbook/views/homeScreen/newRecipes.dart';
 import 'package:cookbook/views/sharedWidgets/items.tools.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +44,7 @@ class HomeScreen extends HookWidget {
                 ],
                 labelColor: Colors.black,
                 indicator: DotIndicator(
-                  color: Colors.black,
+                  color: CookColors.mainColor,
                   distanceFromCenter: 16,
                   radius: 3,
                   paintingStyle: PaintingStyle.fill,
