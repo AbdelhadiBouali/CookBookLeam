@@ -3,8 +3,8 @@ import 'package:cookbook/views/homeScreen/newRecipes.dart';
 import 'package:cookbook/views/sharedWidgets/items.tools.dart';
 import 'package:flutter/material.dart';
 
-class MyRecipesScreen extends StatelessWidget {
-  const MyRecipesScreen({Key key}) : super(key: key);
+class FavoriteScreen extends StatelessWidget {
+  const FavoriteScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class MyRecipesScreen extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.all(30.0),
-            child: title("My recipes", context),
+            child: title("Favorite Recipes", context),
           ),
           Padding(
               padding: EdgeInsets.only(top: Dimens.height * .1),
