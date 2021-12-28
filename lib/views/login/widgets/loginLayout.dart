@@ -1,14 +1,10 @@
-import 'dart:developer';
-
 import 'package:cookbook/controllers/loginController.dart';
-import 'package:cookbook/providers/authProviders/loginProvider.dart';
-import 'package:cookbook/providers/authProviders/signupProvider.dart';
-import 'package:cookbook/providers/recipeProviders/crudFavorite.dart';
-import 'package:cookbook/providers/recipeProviders/crudRecipes.dart';
+
 import 'package:cookbook/tools/colors.dart';
 import 'package:cookbook/tools/dimensions.dart';
 import 'package:cookbook/views/home/homepage.dart';
 import 'package:cookbook/views/sharedWidgets/items.tools.dart';
+import 'package:cookbook/views/signup/signUpScreen.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -86,7 +82,7 @@ Widget loginLayout(GlobalKey<FormState> formKey) {
             ),
             InkWell(
               onTap: () {
-                //Get.to(SignupScreen(), transition: Transition.rightToLeft);
+                Get.to(SignupScreen(), transition: Transition.rightToLeft);
               },
               child: new Text(
                 "Sign up",

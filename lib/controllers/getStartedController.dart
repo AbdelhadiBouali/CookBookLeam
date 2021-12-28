@@ -1,12 +1,9 @@
 import 'dart:async';
 import 'dart:io';
-
-import 'package:cookbook/services/urls.dart';
 import 'package:cookbook/views/getStarted/getStartedScreen.dart';
 import 'package:cookbook/views/getStarted/noConnectionScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:renovation_core/core.dart';
 
 // This controller is created to manage the state of the splash screen and getting started screens
 

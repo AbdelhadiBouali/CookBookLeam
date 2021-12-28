@@ -1,4 +1,5 @@
 import 'package:cookbook/controllers/getStartedController.dart';
+import 'package:cookbook/tools/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,16 +19,16 @@ class NoConnectionScreen extends StatelessWidget {
               new Text(
                 "No internet Connection !\n",
                 style: TextStyle(
-                  fontFamily: "Gotham",
+                  fontFamily: "Montserrat",
                   fontSize: 20,
                   color: Color(0xff393939),
                 ),
               ),
               new Text(
-                "Vous devez activer votre internet d'abord,\navant d'utiliser l'application",
+                "Please activate your Wi-Fi or Mobile Data to continu",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontFamily: "Gotham",
+                  fontFamily: "Montserrat",
                   fontWeight: FontWeight.w300,
                   fontSize: 14,
                   color: Color(0xff434343),
@@ -39,12 +40,12 @@ class NoConnectionScreen extends StatelessWidget {
                   height: 42.00,
                   width: 144.00,
                   decoration: BoxDecoration(
-                    color: Color(0xff5acfc3),
+                    color: CookColors.mainColor,
                     borderRadius: BorderRadius.circular(21.00),
                   ),
                   child: Center(
                     child: new Text(
-                      "Réessayer",
+                      "Refresh",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontFamily: "Gotham",
