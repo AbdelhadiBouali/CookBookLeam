@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:renovation_core/core.dart';
 import 'package:cookbook/main.dart';
 
-//The sign up method is show an internal server error (500)
 Future<void> signupApi(
     String firstName, String lastName, String email, String password) async {
   Get.dialog(Center(child: CircularProgressIndicator()));
@@ -17,7 +16,10 @@ Future<void> signupApi(
 
   RequestResponse<FrappeResponse> signupResponse =
       await renovationInstance.call(
-    {"cmd": "cookbook_backend.api.signup", "input": body},
+    {
+      "cmd": "cookbook_backend.api.signup",
+      "args": body
+    }, // using the right call
   );
 
   Get.back();
