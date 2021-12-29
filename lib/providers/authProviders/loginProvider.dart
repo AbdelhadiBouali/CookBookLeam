@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:cookbook/services/userState.dart';
 import 'package:cookbook/views/home/homepage.dart';
 import 'package:cookbook/views/sharedWidgets/snackbar.dart';
@@ -15,12 +18,14 @@ Future<void> loginApi(String email, String password) async {
       await getFrappeAuthController().login(email, password);
 
   Get.back();
-
   if (loginResponse.isSuccess) {
     UserState.token = loginResponse.data.token;
-    UserState.user.completeName = loginResponse.data.fullName;
+    UserState.user.fullName = loginResponse.data
+        .fullName; // I saved only the infos needed, not the whole user session
     UserState.userIsLogged = true;
+    UserState.session = json.encode(loginResponse.data.toJson());
     await saveUser(); //save user data in local
+
     Get.offAll(HomePage(),
         transition: Transition.rightToLeft,
         duration: Duration(seconds: 5)); // take user to homepage if sucess

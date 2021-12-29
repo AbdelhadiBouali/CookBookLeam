@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:cookbook/controllers/getStartedController.dart';
+import 'package:cookbook/services/userState.dart';
 import 'package:cookbook/tools/colors.dart';
 import 'package:cookbook/tools/dimensions.dart';
 import 'package:cookbook/views/getStarted/widgets/slideDots.dart';

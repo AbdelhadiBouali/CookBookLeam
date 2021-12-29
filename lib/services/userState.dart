@@ -1,38 +1,41 @@
 import 'package:cookbook/models/user.dart';
+import 'package:renovation_core/auth.dart' as Frappe;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserState {
-  static User user = User(
-    completeName: "",
-    email: "",
-    id: "",
-    password: "",
-    profileImage: "",
-  );
+  static User user = User();
   static bool userIsLogged = false;
-  static bool profileAvailable = false;
   static String token = "";
+  static String session = "";
 }
 
 Future saveUser() async {
   final prefs = await SharedPreferences.getInstance();
-  await prefs.setString("id", UserState.user.id);
-  await prefs.setString("completeName", UserState.user.completeName);
-  await prefs.setString("password", UserState.user.password);
-  await prefs.setBool("userIsLogged", UserState.userIsLogged);
-  await prefs.setBool("profileAvailable", UserState.profileAvailable);
+  await prefs.setString("user", UserState.user.user);
+  await prefs.setString("message", UserState.user.message);
+  await prefs.setString("home_page", UserState.user.homePage);
+  await prefs.setString("user_image", UserState.user.userImage);
+  await prefs.setString("full_name", UserState.user.fullName);
+  await prefs.setString("session", UserState.session);
 
+  await prefs.setString("lang", UserState.user.lang);
+  await prefs.setBool("has_quick_login_pin", UserState.user.hasQuickLoginPin);
+  await prefs.setBool("userIsLogged", UserState.userIsLogged);
   await prefs.setString("token", UserState.token);
-  await prefs.setString("profileImage", UserState.user.profileImage);
 }
 
 Future getUser() async {
   final prefs = await SharedPreferences.getInstance();
-  UserState.user.id = prefs.getString("id") ?? "-1";
-  UserState.user.completeName = prefs.getString("completeName") ?? "none";
-  UserState.user.profileImage = prefs.getString("profileImage") ?? "none";
+  UserState.user.user = prefs.getString("user") ?? "-1";
+  UserState.user.message = prefs.getString("message") ?? "none";
+  UserState.user.homePage = prefs.getString("home_page") ?? "none";
+  UserState.user.userImage = prefs.getString("user_image") ?? "none";
+  UserState.user.fullName = prefs.getString("full_name") ?? "none";
+  UserState.session = prefs.getString("session") ?? "none";
+  UserState.user.lang = prefs.getString("lang") ?? "none";
+  UserState.user.hasQuickLoginPin =
+      prefs.getBool("has_quick_login_pin") ?? false;
   UserState.userIsLogged = prefs.getBool("userIsLogged") ?? false;
-  UserState.profileAvailable = prefs.getBool("profileAvailable") ?? false;
 
   UserState.token = prefs.getString("token") ?? "";
 }
@@ -42,14 +45,6 @@ Future deleteUser() async {
   prefs.clear();
   UserState.token = "";
   UserState.userIsLogged = false;
-  UserState.profileAvailable = false;
-  UserState.user = User(
-    completeName: "",
-    email: "",
-    id: "",
-    password: "",
-    profileImage: "",
-  );
-  await prefs.setBool("userIsOnline", UserState.userIsLogged);
-  await prefs.setBool("profileAvailable", UserState.profileAvailable);
+  UserState.user = User();
+  UserState.session = "";
 }

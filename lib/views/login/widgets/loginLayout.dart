@@ -1,8 +1,7 @@
 import 'package:cookbook/controllers/loginController.dart';
-
+import 'package:cookbook/providers/authProviders/loginProvider.dart';
 import 'package:cookbook/tools/colors.dart';
 import 'package:cookbook/tools/dimensions.dart';
-import 'package:cookbook/views/home/homepage.dart';
 import 'package:cookbook/views/sharedWidgets/items.tools.dart';
 import 'package:cookbook/views/signup/signUpScreen.dart';
 import 'package:email_validator/email_validator.dart';
@@ -54,13 +53,16 @@ Widget loginLayout(GlobalKey<FormState> formKey) {
         SizedBox(height: Dimens.height * .06),
         InkWell(
             onTap: () async {
-              Get.to(HomePage(),
+              /*signupApi("Abdelhadi bouali", "Abdelhadi bouali",
+                  "ha_bouali@esi.dz", "abdelhadi");
+                Get.to(HomePage(),
                   transition: Transition.rightToLeft,
-                  duration: Duration(seconds: 5));
-              /*if (formKey.currentState.validate()) {                    // Verify the format of the inputs
+                  duration: Duration(seconds: 5));*/
+              if (formKey.currentState.validate()) {
+                // Verify the format of the inputs
                 loginApi(loginController.loginEmailTextController.text,
                     loginController.loginPasswordTextController.text);
-              } // Login Function with inputs*/
+              } // Login Function with inputs
             },
             child:
                 nextButton(CookColors.mainColor, "Sign in", CookColors.white)),

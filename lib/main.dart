@@ -1,21 +1,34 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:cookbook/services/urls.dart';
-import 'package:cookbook/services/userState.dart';
+import 'package:cookbook/services/userState.dart' as LocalUser;
 import 'package:cookbook/views/getStarted/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:renovation_core/auth.dart';
 import 'package:renovation_core/core.dart';
 
-import 'models/user.dart';
+import 'models/user.dart' as us;
 
 Renovation renovationInstance = Renovation(); // To initialize Renovation
+FrappeSessionStatusInfo sessionStatusInfo;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //Getting the user
-  UserState.user = User();
-  await getUser();
-  await renovationInstance.init(urlBase, useJWT: true);
 
+  //Getting the user
+  LocalUser.UserState.user = us.User();
+  await LocalUser.getUser();
+  if (LocalUser.UserState.userIsLogged == false)
+    await renovationInstance.init(urlBase, useJWT: true);
+  else {
+    // Get saved in local session
+    await renovationInstance.init(urlBase,
+        useJWT: true,
+        sessionStatusInfo: FrappeSessionStatusInfo.fromJson(
+            json.decode(LocalUser.UserState.session)));
+  }
   runApp(CookBookApp());
 }
 

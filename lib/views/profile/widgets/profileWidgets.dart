@@ -106,7 +106,7 @@ Widget userPages() {
             // Agenda
             InkWell(
               onTap: () {
-                homePageController.selectedIndex(1);
+                homePageController.selectedIndex(0);
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -138,7 +138,7 @@ Widget userPages() {
             // Historique Rendez vous
             InkWell(
               onTap: () {
-                homePageController.selectedIndex(0);
+                homePageController.selectedIndex(1);
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,

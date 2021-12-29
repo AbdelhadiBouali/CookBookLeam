@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cookbook/models/recipe.model.dart';
 import 'package:cookbook/views/sharedWidgets/snackbar.dart';
 import 'package:flutter/material.dart';
@@ -6,13 +8,15 @@ import 'package:renovation_core/core.dart';
 
 //////////////////////////////////////////////////////////////////////////////// METHOD TO GET ALL RECIPES
 
-Future<List<Recipe>> getRecipes() async {
+Future<void> getRecipes() async {
   // need to specify Recipes model attributes
-  RequestResponse<List<Recipe>> response =
-      await getFrappeModelController().getList(Recipe(), fields: ['*']);
-  List<Recipe> recipes = response.data;
+  RequestResponse<dynamic> response =
+      await getFrappeModelController().getList(Recipe());
+  print(response.data.toString());
 
-  return recipes;
+  /* List<Recipe> recipes = response.data;*/
+
+  //return recipes;
 }
 
 //////////////////////////////////////////////////////////////////// Create a recipe

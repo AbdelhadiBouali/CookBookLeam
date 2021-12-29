@@ -6,7 +6,7 @@ import 'dart:convert';
 
 import 'package:renovation_core/model.dart';
 
-List<Recipe> recipeJson(String str) =>
+List<Recipe> recipeFromJson(String str) =>
     List<Recipe>.from(json.decode(str).map((x) => Recipe.fromJson(x)));
 
 String recipeToJson(List<Recipe> data) =>
@@ -53,7 +53,5 @@ class Recipe extends FrappeDocument {
       };
 
   @override
-  T fromJson<T>(Map<String, dynamic> json) {
-    throw UnimplementedError();
-  }
+  T fromJson<T>(Map<String, dynamic> json) => Recipe.fromJson(json) as T;
 }

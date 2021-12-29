@@ -1,7 +1,10 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:cookbook/services/userState.dart';
+import 'package:cookbook/services/userState.dart';
 import 'package:cookbook/views/getStarted/getStartedScreen.dart';
 import 'package:cookbook/views/getStarted/noConnectionScreen.dart';
+import 'package:cookbook/views/home/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,8 +43,11 @@ class GetStartedController extends GetxController {
         final result = await InternetAddress.lookup('google.com');
         if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
           // We should verify the User State (Logged in or not), and take the user to welcome screen or homepage
-          Get.offAll(GetStartedScreen(),
-              transition: Transition.fade, duration: Duration(seconds: 1));
+          UserState.userIsLogged == true
+              ? Get.offAll(HomePage(),
+                  transition: Transition.fade, duration: Duration(seconds: 1))
+              : Get.offAll(GetStartedScreen(),
+                  transition: Transition.fade, duration: Duration(seconds: 1));
         }
       } on SocketException catch (_) {
         Get.offAll(NoConnectionScreen());

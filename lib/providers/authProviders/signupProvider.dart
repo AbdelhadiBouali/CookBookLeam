@@ -1,12 +1,10 @@
 import 'package:cookbook/views/sharedWidgets/snackbar.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:renovation_core/core.dart';
 import 'package:cookbook/main.dart';
 
 Future<void> signupApi(
     String firstName, String lastName, String email, String password) async {
-  Get.dialog(Center(child: CircularProgressIndicator()));
+  //Get.dialog(Center(child: CircularProgressIndicator()));
   var body = {
     'first_name': firstName,
     'last_name': lastName,
@@ -22,14 +20,14 @@ Future<void> signupApi(
     }, // using the right call
   );
 
-  Get.back();
+  //Get.back();
 
   if (signupResponse.isSuccess) {
-    Get.back();
+    // Get.back();
     customSnackbar("Signed up successfully", "Sign in please", 7);
   } else {
     // Showing a simple snackbar to the user
-    customSnackbar(signupResponse.error.info.cause.toString(),
+    customSnackbar(signupResponse.error.description.toString(),
         signupResponse.error.info.suggestion.toString(), 5);
   }
 }
