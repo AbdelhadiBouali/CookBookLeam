@@ -1,3 +1,4 @@
+import 'package:cookbook/providers/recipeProviders/crudRecipes.dart';
 import 'package:cookbook/tools/colors.dart';
 import 'package:cookbook/views/homeScreen/newRecipes.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +11,12 @@ class HomeScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    getRecipes();
     return Scaffold(
       body: SafeArea(
         bottom: false,
         child: DefaultTabController(
-          length: 3,
+          length: 1,
           initialIndex: 0,
           child: Column(
             children: [
@@ -33,12 +35,6 @@ class HomeScreen extends HookWidget {
                 tabs: [
                   Tab(
                     text: "New Recipes".toUpperCase(),
-                  ),
-                  Tab(
-                    text: "Favourites".toUpperCase(),
-                  ),
-                  Tab(
-                    text: "Categories".toUpperCase(),
                   ),
                 ],
                 labelColor: Colors.black,
@@ -60,8 +56,6 @@ class HomeScreen extends HookWidget {
               Expanded(
                 child: TabBarView(
                   children: <Widget>[
-                    NewRecipe(),
-                    NewRecipe(),
                     NewRecipe(),
                   ],
                 ),

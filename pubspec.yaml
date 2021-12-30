@@ -72,6 +72,8 @@ flutter:
      - assets/images/img3.jpg
      - assets/images/img4.jpg
      - assets/images/img5.jpg
+     - assets/images/loader.gif
+     - assets/images/loading.gif
      - assets/images/NoConnection.png
      - assets/images/logo.png
 

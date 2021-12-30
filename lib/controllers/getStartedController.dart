@@ -25,11 +25,13 @@ class GetStartedController extends GetxController {
         } else {
           currentPage(0);
         }
-        pageController.animateToPage(
-          currentPage.value,
-          duration: Duration(milliseconds: 300),
-          curve: Curves.easeIn,
-        );
+        if (pageController.hasClients) {
+          pageController.animateToPage(
+            currentPage.value,
+            duration: Duration(milliseconds: 300),
+            curve: Curves.easeIn,
+          );
+        }
       });
     } catch (e) {}
   }

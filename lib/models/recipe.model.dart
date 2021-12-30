@@ -1,6 +1,6 @@
 // To parse this JSON data, do
 //
-//     final notificationModel = notificationModelFromJson(jsonString);
+//     final recipe = recipeFromJson(jsonString);
 
 import 'dart:convert';
 
@@ -12,44 +12,84 @@ List<Recipe> recipeFromJson(String str) =>
 String recipeToJson(List<Recipe> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-// Attributes not specified
 class Recipe extends FrappeDocument {
-  Recipe(
-      {this.title,
-      this.writer,
-      this.description,
-      this.cookingTime,
-      this.servings,
-      this.imgPath,
-      this.ingredients,
-      this.id})
-      : super('Recipe');
+  Recipe({
+    this.name,
+    this.creation,
+    this.modified,
+    this.modifiedBy,
+    this.owner,
+    this.docstatus,
+    this.parentfield,
+    this.parenttype,
+    this.idx,
+    this.image,
+    this.description,
+    this.title,
+    this.rating,
+    this.userTags,
+    this.comments,
+    this.assign,
+    this.likedBy,
+  }) : super('Recipe');
 
-  String title, writer, description, id;
-  int cookingTime;
-  int servings;
-  List<String> ingredients = [];
-  String imgPath;
+  String name;
+  DateTime creation;
+  DateTime modified;
+  String modifiedBy;
+  String owner;
+  int docstatus;
+  dynamic parentfield;
+  dynamic parenttype;
+  int idx;
+  String image;
+  String description;
+  String title;
+  int rating;
+  dynamic userTags;
+  dynamic comments;
+  dynamic assign;
+  dynamic likedBy;
 
   factory Recipe.fromJson(Map<String, dynamic> json) => Recipe(
-      title: json["title"],
-      writer: json["writer"],
-      description: json["description"],
-      id: json["_id"],
-      cookingTime: json["cookingTime"],
-      servings: json["servings"],
-      imgPath: json["imgPath"],
-      ingredients: json["ingredients"]);
+        name: json["name"],
+        creation: DateTime.parse(json["creation"]),
+        modified: DateTime.parse(json["modified"]),
+        modifiedBy: json["modified_by"],
+        owner: json["owner"],
+        docstatus: json["docstatus"],
+        parentfield: json["parentfield"],
+        parenttype: json["parenttype"],
+        idx: json["idx"],
+        image: json["image"],
+        description: json["description"],
+        title: json["title"],
+        rating: json["rating"],
+        userTags: json["_user_tags"],
+        comments: json["_comments"],
+        assign: json["_assign"],
+        likedBy: json["_liked_by"],
+      );
 
   Map<String, dynamic> toJson() => {
-        "title": title,
-        "writer": writer,
+        "name": name,
+        "creation": creation.toIso8601String(),
+        "modified": modified.toIso8601String(),
+        "modified_by": modifiedBy,
+        "owner": owner,
+        "docstatus": docstatus,
+        "parent": parent,
+        "parentfield": parentfield,
+        "parenttype": parenttype,
+        "idx": idx,
+        "image": image,
         "description": description,
-        "_id": id,
-        "cookingTime": cookingTime,
-        "servings": servings,
-        "imgPath": imgPath,
-        "ingredients": ingredients
+        "title": title,
+        "rating": rating,
+        "_user_tags": userTags,
+        "_comments": comments,
+        "_assign": assign,
+        "_liked_by": likedBy,
       };
 
   @override

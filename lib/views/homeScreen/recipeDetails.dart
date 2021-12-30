@@ -56,7 +56,7 @@ class RecipeDetails extends HookWidget {
                 height: 10,
               ),
               Text(
-                recipeModel.writer,
+                recipeModel.description,
                 style: textTheme.headline3,
               ),
               SizedBox(
@@ -72,20 +72,9 @@ class RecipeDetails extends HookWidget {
                     width: 5,
                   ),
                   Text(
-                    "198",
-                    style: textTheme.headline3,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Icon(
-                    FlutterIcons.timer_mco,
-                  ),
-                  SizedBox(
-                    width: 4,
-                  ),
-                  Text(
-                    recipeModel.cookingTime.toString() + '\'',
+                    recipeModel.likedBy != null
+                        ? recipeModel.likedBy.toString()
+                        : "0",
                     style: textTheme.headline3,
                   ),
                   SizedBox(
@@ -100,7 +89,9 @@ class RecipeDetails extends HookWidget {
                     width: 10,
                   ),
                   Text(
-                    recipeModel.servings.toString() + ' Servings',
+                    recipeModel.rating != null
+                        ? recipeModel.rating.toString() + ' Rating'
+                        : "0" + ' Rating',
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -117,7 +108,7 @@ class RecipeDetails extends HookWidget {
               ),
               Expanded(
                 child: DefaultTabController(
-                  length: 3,
+                  length: 1,
                   initialIndex: 0,
                   child: Column(
                     children: [
@@ -126,13 +117,7 @@ class RecipeDetails extends HookWidget {
                         indicatorColor: Colors.red,
                         tabs: [
                           Tab(
-                            text: "Ingredients".toUpperCase(),
-                          ),
-                          Tab(
-                            text: "Preparation".toUpperCase(),
-                          ),
-                          Tab(
-                            text: "Reviews".toUpperCase(),
+                            text: "Comments".toUpperCase(),
                           ),
                         ],
                         labelColor: Colors.black,
@@ -157,15 +142,7 @@ class RecipeDetails extends HookWidget {
                       Expanded(
                         child: TabBarView(
                           children: [
-                            Ingredients(recipeModel: recipeModel),
-                            Container(
-                              child: Text(
-                                "Preparation Tab",
-                              ), // Just to test
-                            ),
-                            Container(
-                              child: Text("Reviews Tab"), // Just to test
-                            ),
+                            Comments(recipeModel: recipeModel),
                           ],
                         ),
                       )
@@ -183,15 +160,25 @@ class RecipeDetails extends HookWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Hero(
-                    tag: recipeModel.imgPath,
+                    tag: recipeModel.image,
                     child: ClipRRect(
-                      child: Image(
-                        width: double.infinity,
-                        height: (Dimens.height / 2) + 50,
-                        fit: BoxFit.cover,
-                        image: AssetImage(recipeModel.imgPath),
-                      ),
-                    ),
+                        child: FadeInImage.assetNetwork(
+                            width: double.infinity,
+                            height: (Dimens.height / 2) + 50,
+                            placeholder: 'assets/images/loader.gif',
+                            fit: BoxFit.cover,
+                            image: recipeModel.image.toString(),
+                            imageErrorBuilder: (context, error, stackTrace) {
+                              return FadeInImage.assetNetwork(
+                                width: double.infinity,
+                                height: (Dimens.height / 2) + 50,
+                                placeholder: 'assets/images/loader.gif',
+                                fit: BoxFit.cover,
+                                fadeInDuration: Duration(seconds: 3),
+                                image:
+                                    "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+                              );
+                            })),
                   ),
                 ],
               ),
@@ -203,10 +190,8 @@ class RecipeDetails extends HookWidget {
                     likeItem.value = !likeItem.value;
                   },
                   child: Icon(
-                    likeItem.value == true
-                        ? FlutterIcons.bookmark_check_mco
-                        : FlutterIcons.bookmark_outline_mco,
-                    color: Colors.white,
+                    FlutterIcons.heart_circle_mco,
+                    color: likeItem.value ? Colors.red : Colors.black,
                     size: 38,
                   ),
                 ),
@@ -232,8 +217,8 @@ class RecipeDetails extends HookWidget {
   }
 }
 
-class Ingredients extends StatelessWidget {
-  const Ingredients({
+class Comments extends StatelessWidget {
+  const Comments({
     Key key,
     @required this.recipeModel,
   }) : super(key: key);
@@ -247,29 +232,41 @@ class Ingredients extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 12.0),
         child: Column(
           children: [
-            ListView.separated(
-              shrinkWrap: true,
-              physics: ScrollPhysics(),
-              itemCount: recipeModel.ingredients.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 2.0,
-                  ),
-                  child: Text(
-                    '⚫️ ' + recipeModel.ingredients[index],
-                    style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                        fontFamily: "Montserrat"),
-                  ),
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return Divider(color: Colors.black.withOpacity(0.3));
-              },
-            ),
+            recipeModel.comments != null
+                ? ListView.separated(
+                    shrinkWrap: true,
+                    physics: ScrollPhysics(),
+                    itemCount: recipeModel.comments.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 2.0,
+                        ),
+                        child: Text(
+                          '⚫️ ' + recipeModel.comments[index],
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                              fontFamily: "Montserrat"),
+                        ),
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return Divider(color: Colors.black.withOpacity(0.3));
+                    },
+                  )
+                : Padding(
+                    padding: EdgeInsets.only(top: Dimens.height * .15),
+                    child: Center(
+                      child: Text("No comments yet",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                              fontFamily: "Montserrat")),
+                    ),
+                  )
           ],
         ),
       ),
