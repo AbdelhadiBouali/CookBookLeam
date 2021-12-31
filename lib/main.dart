@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:cookbook/services/urls.dart';
 import 'package:cookbook/services/userState.dart' as LocalUser;
@@ -21,7 +20,6 @@ void main() async {
   //Getting the user
   LocalUser.UserState.user = us.User();
   await LocalUser.getUser();
-  deleteUser();
   if (LocalUser.UserState.userIsLogged == false)
     await renovationInstance.init(urlBase, useJWT: true);
   else {

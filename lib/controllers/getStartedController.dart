@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:cookbook/services/userState.dart';
-import 'package:cookbook/services/userState.dart';
 import 'package:cookbook/views/getStarted/getStartedScreen.dart';
 import 'package:cookbook/views/getStarted/noConnectionScreen.dart';
 import 'package:cookbook/views/home/homepage.dart';

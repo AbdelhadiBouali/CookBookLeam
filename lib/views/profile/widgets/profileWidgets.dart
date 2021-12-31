@@ -1,6 +1,4 @@
 import 'package:cookbook/controllers/homeController.dart';
-import 'package:cookbook/models/favoriteRecipe.model.dart';
-import 'package:cookbook/providers/recipeProviders/crudFavorite.dart';
 import 'package:cookbook/services/userState.dart';
 import 'package:cookbook/tools/colors.dart';
 import 'package:cookbook/tools/dimensions.dart';
@@ -11,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:renovation_core/auth.dart';
 
 import '../../../main.dart';
+import 'logoutDialog.dart';
 
 final HomePageController homePageController = Get.put(HomePageController());
 
@@ -44,9 +43,7 @@ Widget profileCard() {
             alignment: Alignment.topLeft,
             child: InkWell(
               onTap: () {
-                FavoriteRecipe favoriteRecipe =
-                    FavoriteRecipe(title: 'Recipe 2', id: "1");
-                addToFavorite(favoriteRecipe);
+                logoutDialog();
               },
               child: Container(
                   child: Icon(FlutterIcons.logout_ant, color: Colors.white)),

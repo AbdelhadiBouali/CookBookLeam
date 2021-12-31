@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
-
 import 'package:cookbook/services/userState.dart';
 import 'package:cookbook/views/home/homepage.dart';
 import 'package:cookbook/views/sharedWidgets/snackbar.dart';

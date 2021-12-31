@@ -6,14 +6,13 @@ import 'package:cookbook/providers/recipeProviders/crudRecipes.dart';
 import 'package:cookbook/tools/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:renovation_core/core.dart';
 
 final RecipeController recipeController = Get.put(RecipeController());
 
 Widget recipeForm() {
-  /*recipeController.titleTextController.clear();
+  recipeController.titleTextController.clear();
   recipeController.nameTextController.clear();
-  recipeController.descTextController.clear();*/
+  recipeController.descTextController.clear();
   recipeController.selectedField(0);
   return Form(
     key: recipeController.formKey,
