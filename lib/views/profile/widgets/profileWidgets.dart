@@ -67,7 +67,7 @@ Widget profileCard() {
               Column(
                 children: [
                   new Text(
-                    UserState.user.fullName,
+                    UserState.user.fullName.substring(0, 20) + "...",
                     style: TextStyle(
                       fontFamily: "Montserrat",
                       fontSize: 17,

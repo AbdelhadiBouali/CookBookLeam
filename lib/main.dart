@@ -21,7 +21,7 @@ void main() async {
   //Getting the user
   LocalUser.UserState.user = us.User();
   await LocalUser.getUser();
-  // deleteUser();
+  deleteUser();
   if (LocalUser.UserState.userIsLogged == false)
     await renovationInstance.init(urlBase, useJWT: true);
   else {

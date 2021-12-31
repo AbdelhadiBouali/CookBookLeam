@@ -14,7 +14,6 @@ String recipeToJson(List<Recipe> data) =>
 
 class Recipe extends FrappeDocument {
   Recipe({
-    this.name,
     this.creation,
     this.modified,
     this.modifiedBy,
@@ -33,7 +32,6 @@ class Recipe extends FrappeDocument {
     this.likedBy,
   }) : super('Recipe');
 
-  String name;
   DateTime creation;
   DateTime modified;
   String modifiedBy;
@@ -52,7 +50,6 @@ class Recipe extends FrappeDocument {
   dynamic likedBy;
 
   factory Recipe.fromJson(Map<String, dynamic> json) => Recipe(
-        name: json["name"],
         creation: DateTime.parse(json["creation"]),
         modified: DateTime.parse(json["modified"]),
         modifiedBy: json["modified_by"],
@@ -72,7 +69,6 @@ class Recipe extends FrappeDocument {
       );
 
   Map<String, dynamic> toJson() => {
-        "name": name,
         "creation": creation.toIso8601String(),
         "modified": modified.toIso8601String(),
         "modified_by": modifiedBy,
