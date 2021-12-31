@@ -1,4 +1,6 @@
 import 'package:cookbook/controllers/homeController.dart';
+import 'package:cookbook/models/favoriteRecipe.model.dart';
+import 'package:cookbook/providers/recipeProviders/crudFavorite.dart';
 import 'package:cookbook/services/userState.dart';
 import 'package:cookbook/tools/colors.dart';
 import 'package:cookbook/tools/dimensions.dart';
@@ -42,7 +44,9 @@ Widget profileCard() {
             alignment: Alignment.topLeft,
             child: InkWell(
               onTap: () {
-                customSnackbar("To logout", "Page unavailable", 5);
+                FavoriteRecipe favoriteRecipe =
+                    FavoriteRecipe(title: 'Recipe 2', id: "1");
+                addToFavorite(favoriteRecipe);
               },
               child: Container(
                   child: Icon(FlutterIcons.logout_ant, color: Colors.white)),

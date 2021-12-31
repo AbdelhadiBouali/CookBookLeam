@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cookbook/models/favoriteRecipe.model.dart';
 import 'package:cookbook/providers/recipeProviders/crudFavorite.dart';
 import 'package:cookbook/providers/recipeProviders/crudRecipes.dart';
 import 'package:cookbook/tools/dimensions.dart';

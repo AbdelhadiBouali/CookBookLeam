@@ -16,7 +16,7 @@ class FavoriteRecipe extends FrappeDocument {
     this.title,
     this.id,
     this.type,
-  }) : super("Favorite Recipe");
+  }) : super("Favorite Item");
 
   String title;
   String id;
