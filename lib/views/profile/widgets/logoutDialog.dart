@@ -24,7 +24,7 @@ Future<dynamic> logoutDialog() {
                 child: Container(
                   color: Colors.white,
                   width: Dimens.width * .9,
-                  height: Dimens.height * .35,
+                  height: Dimens.height * .25,
                   child: Material(
                     textStyle: TextStyle(color: Colors.black),
                     color: Colors.white,
@@ -44,7 +44,7 @@ Future<dynamic> logoutDialog() {
                             ),
                             SizedBox(height: Dimens.height * .02),
                             Container(
-                              height: Dimens.height * .15,
+                              height: Dimens.height * .05,
                               width: Dimens.width * .8,
                               child: RichText(
                                 text: TextSpan(children: [
@@ -63,7 +63,7 @@ Future<dynamic> logoutDialog() {
                                 overflow: TextOverflow.clip,
                               ),
                             ),
-                            SizedBox(height: Dimens.height * .01),
+                            SizedBox(height: Dimens.height * .026),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

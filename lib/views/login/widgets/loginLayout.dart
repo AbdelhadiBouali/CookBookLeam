@@ -12,8 +12,6 @@ import 'package:get/get.dart';
 final LoginController loginController = Get.put(LoginController());
 
 Widget loginLayout(GlobalKey<FormState> formKey) {
-  loginController.loginEmailTextController.clear();
-  loginController.loginPasswordTextController.clear();
   return Form(
     key: formKey,
     child: Column(

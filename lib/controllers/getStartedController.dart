@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:cookbook/controllers/loginController.dart';
 import 'package:cookbook/services/userState.dart';
 import 'package:cookbook/views/getStarted/getStartedScreen.dart';
 import 'package:cookbook/views/getStarted/noConnectionScreen.dart';
@@ -8,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // This controller is created to manage the state of the splash screen and getting started screens
+
+final LoginController loginController = Get.put(LoginController());
 
 class GetStartedController extends GetxController {
   var currentPage = 0.obs; // Observable
@@ -58,6 +61,8 @@ class GetStartedController extends GetxController {
 
   @override
   void onInit() async {
+    loginController.loginEmailTextController.clear();
+    loginController.loginPasswordTextController.clear();
     pageDirection();
     slideController();
     super.onInit();
