@@ -14,6 +14,7 @@ Future<List<FavoriteRecipe>> getFavorites() async {
     "cmd": "cookbook_backend.api.favorites.get_favorite_recipes",
   });
 
+  log(response.rawResponse.toString());
   List<dynamic> favoritesArray;
   List<FavoriteRecipe> favoriteRecipes;
   if (response.isSuccess) {

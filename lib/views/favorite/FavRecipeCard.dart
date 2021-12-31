@@ -3,17 +3,17 @@ import 'package:cookbook/tools/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
-class RecipeCard extends StatefulWidget {
+class FavRecipeCard extends StatefulWidget {
   final Recipe recipeModel;
-  RecipeCard({
+  FavRecipeCard({
     @required this.recipeModel,
   });
 
   @override
-  _RecipeCardState createState() => _RecipeCardState();
+  _FavRecipeCardState createState() => _FavRecipeCardState();
 }
 
-class _RecipeCardState extends State<RecipeCard> {
+class _FavRecipeCardState extends State<FavRecipeCard> {
   bool loved = false;
   @override
   Widget build(BuildContext context) {

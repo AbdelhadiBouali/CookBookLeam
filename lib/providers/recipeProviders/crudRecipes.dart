@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:cookbook/controllers/recipesController.dart';
 import 'package:cookbook/models/recipe.model.dart';
+import 'package:cookbook/services/userState.dart';
 import 'package:cookbook/views/sharedWidgets/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:renovation_core/core.dart';
+
+final RecipeController recipeController = Get.put(RecipeController());
 
 //////////////////////////////////////////////////////////////////////////////// METHOD TO GET ALL RECIPES
 
@@ -22,21 +26,30 @@ Future<List<Recipe>> getRecipes() async {
 
 //////////////////////////////////////////////////////////////////// Create a recipe
 
-Future<void> createRecipe(Recipe personalRecipe) async {
-  // need to specify Recipes model attributes
+Future<bool> createRecipe(Recipe personalRecipe) async {
+  Get.dialog(Center(child: CircularProgressIndicator()));
 
-  RequestResponse<Recipe> response =
+  personalRecipe.doctype = "Recipe";
+  personalRecipe.isLocal = true;
+  personalRecipe.name = UserState.user.user;
+
+  var response =
       await getFrappeModelController().saveDoc<Recipe>(personalRecipe);
 
+  log(response.httpCode.toString());
   if (response.isSuccess) {
+    // Save the recipe in the controller to refresh recipes
+    recipeController.myRecipesList.add(response.data);
+    Get.back();
     // If the document was successfully created
-
-    customSnackbar(response.data.title, response.data.owner, 5);
+    customSnackbar("Recipe " + response.data.title + "Created Successfully",
+        "By : " + response.data.owner, 5);
   } else {
     // If the document was not created => show error snackbar
-    customSnackbar(
-        response.error.info.cause, response.error.info.suggestion, 5);
+    /*customSnackbar(
+        response.error.info.cause, response.error.info.suggestion, 5);*/
   }
+  return response.isSuccess;
 }
 
 //////////////////////////////////////////////////////////////////// Update a recipe

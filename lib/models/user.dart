@@ -4,11 +4,13 @@
 
 import 'dart:convert';
 
+import 'package:renovation_core/model.dart';
+
 User userFromJson(String str) => User.fromJson(json.decode(str));
 
 String userToJson(User data) => json.encode(data.toJson());
 
-class User {
+class User extends FrappeDocument {
   User({
     this.user,
     this.message,
@@ -18,7 +20,7 @@ class User {
     this.hasQuickLoginPin,
     this.lang,
     this.token,
-  });
+  }) : super('User');
 
   String user;
   String message;
@@ -50,4 +52,10 @@ class User {
         "lang": lang,
         "token": token,
       };
+
+  @override
+  T fromJson<T>(Map<String, dynamic> json) {
+    // TODO: implement fromJson
+    throw UnimplementedError();
+  }
 }

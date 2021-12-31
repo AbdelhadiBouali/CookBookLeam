@@ -11,7 +11,8 @@ class SignUpController extends GetxController {
 
   TextEditingController emailTextController = TextEditingController();
   TextEditingController passwordTextController = TextEditingController();
-  TextEditingController fullNameTextController = TextEditingController();
+  TextEditingController firstNameTextController = TextEditingController();
+  TextEditingController lastNameTextController = TextEditingController();
 
   @override
   void onInit() {

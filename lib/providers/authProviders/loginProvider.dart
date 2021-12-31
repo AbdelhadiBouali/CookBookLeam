@@ -20,6 +20,7 @@ Future<void> loginApi(String email, String password) async {
   Get.back();
   if (loginResponse.isSuccess) {
     UserState.token = loginResponse.data.token;
+    UserState.user.user = loginResponse.data.currentUser;
     UserState.user.fullName = loginResponse.data
         .fullName; // I saved only the infos needed, not the whole user session
     UserState.userIsLogged = true;

@@ -9,6 +9,6 @@ import 'package:flutter/material.dart';
 final List<Widget> screensChoice = <Widget>[
   HomeScreen(),
   MyRecipesScreen(),
-  FavoriteScreen(),
+  FavoriteRecipesScreen(),
   ProfileScreen()
 ];

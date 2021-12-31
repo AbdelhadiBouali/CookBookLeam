@@ -1,9 +1,11 @@
 import 'package:cookbook/tools/colors.dart';
 import 'package:cookbook/tools/dimensions.dart';
 import 'package:cookbook/views/homeScreen/newRecipes.dart';
+import 'package:cookbook/views/myRecipes/createRecipe.dart';
 import 'package:cookbook/views/sharedWidgets/items.tools.dart';
 import 'package:cookbook/views/sharedWidgets/snackbar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MyRecipesScreen extends StatelessWidget {
   const MyRecipesScreen({Key key}) : super(key: key);
@@ -26,7 +28,7 @@ class MyRecipesScreen extends StatelessWidget {
             right: Dimens.width * .05,
             child: InkWell(
               onTap: () {
-                customSnackbar("To add a recipe", "Page unavailable", 5);
+                Get.to(() => CreateRecipe());
               },
               child: new Container(
                   height: 59.46,

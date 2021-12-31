@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:cookbook/services/urls.dart';
 import 'package:cookbook/services/userState.dart' as LocalUser;
+import 'package:cookbook/services/userState.dart';
 import 'package:cookbook/views/getStarted/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,6 +21,7 @@ void main() async {
   //Getting the user
   LocalUser.UserState.user = us.User();
   await LocalUser.getUser();
+  // deleteUser();
   if (LocalUser.UserState.userIsLogged == false)
     await renovationInstance.init(urlBase, useJWT: true);
   else {

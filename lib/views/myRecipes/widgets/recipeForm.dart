@@ -1,33 +1,30 @@
-import 'package:cookbook/controllers/signupController.dart';
-import 'package:cookbook/providers/authProviders/signupProvider.dart';
+import 'dart:developer';
+
+import 'package:cookbook/controllers/recipesController.dart';
+import 'package:cookbook/models/recipe.model.dart';
+import 'package:cookbook/providers/recipeProviders/crudRecipes.dart';
 import 'package:cookbook/tools/dimensions.dart';
-import 'package:cookbook/views/sharedWidgets/snackbar.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:renovation_core/core.dart';
 
-final SignUpController signUpController = Get.put(SignUpController());
+final RecipeController recipeController = Get.put(RecipeController());
 
-Widget signupLayout() {
+Widget recipeForm() {
+  /*recipeController.titleTextController.clear();
+  recipeController.nameTextController.clear();
+  recipeController.descTextController.clear();*/
+  recipeController.selectedField(0);
   return Form(
-    key: signUpController.formKey,
+    key: recipeController.formKey,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(height: Dimens.height * .05),
-        new Text(
-          "Start the adventure",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontFamily: "Montserrat",
-            fontWeight: FontWeight.w700,
-            fontSize: 28,
-            color: Color(0xff000000),
-          ),
-        ),
+
         SizedBox(height: Dimens.height * .023),
         new Text(
-          "Create a cookbook account",
+          "Please enter the recipe's credentials",
           textAlign: TextAlign.center,
           style: TextStyle(
             fontFamily: "Montserrat",
@@ -35,48 +32,23 @@ Widget signupLayout() {
             color: Color(0xff000000),
           ),
         ),
+        // These textfields are only to test and not all the fields.
         SizedBox(height: Dimens.height * .07),
-        firstnameInput(),
+        nameInput(),
         SizedBox(height: Dimens.height * .026),
-        lastnameInput(),
+        titleInput(),
         SizedBox(height: Dimens.height * .026),
-        emailInput(),
+        descriptionInput(),
         SizedBox(height: Dimens.height * .026),
-        passwordInput(),
-        SizedBox(height: Dimens.height * .025),
+
         submitButton(),
         SizedBox(height: Dimens.height * .05),
-        new Text(
-          "Already have an account?",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontFamily: "Montserrat",
-            fontSize: 16,
-            color: Colors.black,
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            Get.back();
-          },
-          child: new Text(
-            "Log in",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontFamily: "Montserrat",
-              fontSize: 16,
-              color: Color(0xffeb786b),
-            ),
-          ),
-        )
       ],
     ),
   );
 }
 
-// Input textfields
-
-Widget firstnameInput() {
+Widget nameInput() {
   return new Container(
     //first name
     height: Dimens.height * .068,
@@ -98,16 +70,15 @@ Widget firstnameInput() {
     ),
     child: Center(
       child: TextFormField(
-        controller: signUpController.firstNameTextController, //
+        controller: recipeController.nameTextController, //
         onTap: () {
-          signUpController.selectedField(1);
+          recipeController.selectedField(1);
         },
-        validator: (fullName) {
-          String pattern =
-              r"^([a-zA-Z]+[\'\,\.\-]?[a-zA-Z ]*)+[ ]([a-zA-Z]+[\'\,\.\-]?[a-zA-Z ]+)+$";
+        validator: (name) {
+          String pattern = r"^([a-zA-Z]+[\'\,\.\-]?[a-zA-Z ]*)";
           RegExp regex = new RegExp(pattern);
-          if (!regex.hasMatch(
-              fullName != null ? fullName : 'Please Enter a correct name'))
+          if (!regex
+              .hasMatch(name != null ? name : 'Please Enter a correct name'))
             return 'Please Enter a correct name';
           else
             return null;
@@ -123,15 +94,15 @@ Widget firstnameInput() {
           errorStyle: TextStyle(height: 0),
           prefixIcon: Icon(
             Icons.person,
-            color: signUpController.selectedField.value == 1
+            color: recipeController.selectedField.value == 1
                 ? Color(0xffeb786b)
                 : Color(0xff707070).withOpacity(0.5),
           ),
-          hintText: "First name",
+          hintText: "Recipe's name",
           hintStyle: TextStyle(
             fontFamily: "Montserrat",
             fontSize: 13,
-            color: signUpController.selectedField.value == 1
+            color: recipeController.selectedField.value == 1
                 ? Color(0xffeb786b)
                 : Color(0xffcfcfcf),
           ),
@@ -153,7 +124,7 @@ Widget firstnameInput() {
   );
 }
 
-Widget lastnameInput() {
+Widget titleInput() {
   return new Container(
     //Last name
     height: Dimens.height * .068,
@@ -175,17 +146,16 @@ Widget lastnameInput() {
     ),
     child: Center(
       child: TextFormField(
-        controller: signUpController.lastNameTextController, //
+        controller: recipeController.titleTextController, //
         onTap: () {
-          signUpController.selectedField(2);
+          recipeController.selectedField(2);
         },
-        validator: (fullName) {
-          String pattern =
-              r"^([a-zA-Z]+[\'\,\.\-]?[a-zA-Z ]*)+[ ]([a-zA-Z]+[\'\,\.\-]?[a-zA-Z ]+)+$";
+        validator: (title) {
+          String pattern = r"^([a-zA-Z]+[\'\,\.\-]?[a-zA-Z ]*)";
           RegExp regex = new RegExp(pattern);
-          if (!regex.hasMatch(
-              fullName != null ? fullName : 'Please Enter a correct name'))
-            return 'Please Enter a correct name';
+          if (!regex
+              .hasMatch(title != null ? title : 'Please Enter a correct title'))
+            return 'Please Enter a correct title';
           else
             return null;
         },
@@ -200,15 +170,15 @@ Widget lastnameInput() {
           errorStyle: TextStyle(height: 0),
           prefixIcon: Icon(
             Icons.person,
-            color: signUpController.selectedField.value == 2
+            color: recipeController.selectedField.value == 2
                 ? Color(0xffeb786b)
                 : Color(0xff707070).withOpacity(0.5),
           ),
-          hintText: "Last name",
+          hintText: "Recipe's title",
           hintStyle: TextStyle(
             fontFamily: "Montserrat",
             fontSize: 13,
-            color: signUpController.selectedField.value == 2
+            color: recipeController.selectedField.value == 2
                 ? Color(0xffeb786b)
                 : Color(0xffcfcfcf),
           ),
@@ -230,86 +200,9 @@ Widget lastnameInput() {
   );
 }
 
-Widget emailInput() {
+Widget descriptionInput() {
   return new Container(
-    //Email
-    height: Dimens.height * .068,
-    width: Dimens.width * .84,
-    decoration: BoxDecoration(
-      color: Color(0xffffffff),
-      border: Border.all(
-        width: 1.00,
-        color: Colors.transparent,
-      ),
-      boxShadow: [
-        BoxShadow(
-          offset: Offset(0.00, 3.00),
-          color: Color(0xff000000).withOpacity(0.05),
-          blurRadius: 6,
-        ),
-      ],
-      borderRadius: BorderRadius.circular(29.00),
-    ),
-    child: Align(
-      alignment: Alignment.bottomCenter,
-      child: TextFormField(
-        controller: signUpController.emailTextController,
-        validator: (value) => EmailValidator.validate(
-                value != null ? value : "Please enter a valid adress")
-            ? null
-            : "Please enter a valid adress",
-        style: TextStyle(
-          fontFamily: "Montserrat",
-          fontSize: 13,
-          color: Colors.black,
-        ),
-        onTap: () {
-          signUpController.selectedField(3);
-        },
-        keyboardType: TextInputType.emailAddress,
-        cursorColor: Color(0xff006e77),
-        decoration: InputDecoration(
-          prefixIcon: Icon(
-            Icons.email,
-            color: signUpController.selectedField.value == 3
-                ? Color(0xffeb786b)
-                : Color(0xff707070).withOpacity(0.5),
-          ),
-          hintText: "Email",
-          hintStyle: TextStyle(
-            fontFamily: "Montserrat",
-            fontSize: 13,
-            color: signUpController.selectedField.value == 3
-                ? Color(0xffeb786b)
-                : Color(0xffcfcfcf),
-          ),
-          //Borders
-          border: InputBorder.none,
-          errorStyle: TextStyle(height: 0),
-          disabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(width: 0),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(29.00),
-            borderSide: BorderSide(
-              color: Color(0xffeb786b),
-              width: 1.0,
-            ),
-          ),
-
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(29),
-            borderSide: BorderSide(color: Colors.transparent, width: 0.0),
-          ),
-        ),
-      ),
-    ),
-  );
-}
-
-Widget passwordInput() {
-  return new Container(
-    //Password
+    //first name
     height: Dimens.height * .068,
     width: Dimens.width * .84,
     decoration: BoxDecoration(
@@ -329,39 +222,44 @@ Widget passwordInput() {
     ),
     child: Center(
       child: TextFormField(
-        controller: signUpController.passwordTextController,
-        validator: (password) {
-          if (password.length < 6)
-            return 'The password must be > 6 caracters';
+        controller: recipeController.descTextController, //
+        onTap: () {
+          recipeController.selectedField(3);
+        },
+        validator: (description) {
+          String pattern = r"^([a-zA-Z]+[\'\,\.\-]?[a-zA-Z ]*)";
+          RegExp regex = new RegExp(pattern);
+          if (!regex.hasMatch(description != null
+              ? description
+              : 'Please Enter a correct description'))
+            return 'Please Enter a correct description';
           else
             return null;
         },
         style: TextStyle(
           fontFamily: "Montserrat",
           fontSize: 13,
-          color: Color(0xffeb786b),
+          color: Colors.black,
         ),
-        onTap: () {
-          signUpController.selectedField(4);
-        },
-        obscureText: true,
+        keyboardType: TextInputType.name,
+        cursorColor: Color(0xffeb786b),
         decoration: InputDecoration(
           errorStyle: TextStyle(height: 0),
           prefixIcon: Icon(
-            Icons.lock,
-            color: signUpController.selectedField.value == 4
+            Icons.person,
+            color: recipeController.selectedField.value == 3
                 ? Color(0xffeb786b)
                 : Color(0xff707070).withOpacity(0.5),
           ),
-          hintText: "Password",
+          hintText: "Recipe's description",
           hintStyle: TextStyle(
             fontFamily: "Montserrat",
             fontSize: 13,
-            color: signUpController.selectedField.value == 4
+            color: recipeController.selectedField.value == 3
                 ? Color(0xffeb786b)
                 : Color(0xffcfcfcf),
           ),
-          //Borders
+          border: InputBorder.none,
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(29.00),
             borderSide: BorderSide(
@@ -373,7 +271,6 @@ Widget passwordInput() {
             borderRadius: BorderRadius.circular(29),
             borderSide: BorderSide(color: Colors.transparent, width: 0.0),
           ),
-          border: InputBorder.none,
         ),
       ),
     ),
@@ -381,13 +278,19 @@ Widget passwordInput() {
 }
 
 Widget submitButton() {
+  Recipe personalRecipe = Recipe(
+    //name: recipeController.nameTextController.text,
+    creation: DateTime.now(),
+    modified: DateTime.now(),
+    //description: recipeController.descTextController.text,
+    //title: recipeController.titleTextController.text,
+  );
+
   return InkWell(
     onTap: () {
-      signupApi(
-          signUpController.firstNameTextController.text,
-          signUpController.lastNameTextController.text,
-          signUpController.emailTextController.text,
-          signUpController.passwordTextController.text);
+      createRecipe(personalRecipe);
+
+      //if (recipeController.formKey.currentState.validate()) {}
     },
     child: Container(
       height: Dimens.height * 0.053,
@@ -398,7 +301,7 @@ Widget submitButton() {
       ),
       child: Center(
         child: new Text(
-          "Create an account",
+          "Create the recipe",
           textAlign: TextAlign.center,
           style: TextStyle(
             fontFamily: "Montserrat",

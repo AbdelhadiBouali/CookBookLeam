@@ -1,10 +1,14 @@
 import 'package:cookbook/controllers/homeController.dart';
+import 'package:cookbook/services/userState.dart';
 import 'package:cookbook/tools/colors.dart';
 import 'package:cookbook/tools/dimensions.dart';
 import 'package:cookbook/views/sharedWidgets/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
+import 'package:renovation_core/auth.dart';
+
+import '../../../main.dart';
 
 final HomePageController homePageController = Get.put(HomePageController());
 
@@ -59,7 +63,7 @@ Widget profileCard() {
               Column(
                 children: [
                   new Text(
-                    "Abdelhadi Bouali",
+                    UserState.user.fullName,
                     style: TextStyle(
                       fontFamily: "Montserrat",
                       fontSize: 17,
@@ -67,7 +71,7 @@ Widget profileCard() {
                     ),
                   ),
                   new Text(
-                    "+213 " + "557649334",
+                    UserState.user.user,
                     style: TextStyle(
                       fontFamily: "Montserrat",
                       fontSize: 12,
